@@ -1,0 +1,34 @@
+name: 'cmake-format lint action'
+author: 'Puneet Matharu'
+description: 'A Github Action to format CMake-specific files using cmake-format (v0.6.13)'
+branding:
+  icon: 'code'
+  color: 'blue'
+inputs:
+  args:
+    description: |
+      Arguments to supply to cmake-format.
+
+      Options:
+        -h, --help            show this help message and exit
+        -v, --version         show program's version number and exit
+        -l {error,warning,info,debug}, --log-level {error,warning,info,debug}
+        --dump-config [{yaml,json,python}]
+                              If specified, print the default configuration to stdout and exit
+        --dump {lex,parse,parsedb,layout,markup}
+        --no-help             When used with --dump-config, will omit helptext comments in the output
+        --no-default          When used with --dump-config, will omit any unmodified configuration value.
+        -i, --in-place
+        --check               Exit with status code 0 if formatting would not change file contents, or status code 1 if it would
+        -o OUTFILE_PATH, --outfile-path OUTFILE_PATH
+                              Where to write the formatted file. Default is stdout.
+        -c CONFIG_FILES [CONFIG_FILES ...], --config-files CONFIG_FILES [CONFIG_FILES ...]
+                              path to configuration file(s)
+
+    required: true
+    default: '--help'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.args }}
