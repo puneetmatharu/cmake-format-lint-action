@@ -11,7 +11,7 @@ LABEL com.github.actions.description="Automatically formats CMake files to the r
 LABEL com.github.actions.icon="code"
 LABEL com.github.actions.color="blue"
 
-RUN pip3 install --upgrade pip && pip install "cmakelang[YAML]==0.6.13"
+RUN pip3 install --upgrade pip && pip install "cmakelang[YAML]==0.6.13" && pip3 install pyyaml
 
 COPY entrypoint.sh /entrypoint.sh
 
