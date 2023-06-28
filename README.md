@@ -11,7 +11,7 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
 ```yaml
   - name: Format CMake files
     id: cmake-format
-    uses: PuneetMatharu/cmake-format-lint-action@v1.0.0
+    uses: PuneetMatharu/cmake-format-lint-action@v1.0.2
     with:
       # Arguments to be passed to cmake-format.
       #
@@ -52,7 +52,7 @@ jobs:
 
     - name: Format CMake files
       id: cmake-format
-      uses: PuneetMatharu/cmake-format-lint-action@v1.0.0
+      uses: PuneetMatharu/cmake-format-lint-action@v1.0.2
       with:
         args: --config-files .cmake-format.json --in-place
 
