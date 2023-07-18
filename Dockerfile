@@ -2,7 +2,7 @@ FROM python:3.9-alpine
 
 LABEL maintainer="Puneet Matharu"
 LABEL name="cmake-format-lint-action"
-LABEL version="1.0.0"
+LABEL version="1.0.3"
 LABEL repository="http://github.com/PuneetMatharu/cmake-format-lint-action"
 LABEL homepage="http://github.com/PuneetMatharu/cmake-format-lint-action"
 
