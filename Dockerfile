@@ -16,4 +16,6 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
 
 COPY entrypoint.sh /entrypoint.sh
 
+ARG PROCESS_FILES
+
 ENTRYPOINT ["/entrypoint.sh"]

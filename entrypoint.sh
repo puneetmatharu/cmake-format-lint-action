@@ -2,6 +2,8 @@
 
 cd "$GITHUB_WORKSPACE" || exit
 
-find . \( -name '*.cmake' -o -name '*.cmake.in' -o -name 'CMakeLists.txt' \) -exec cmake-format $* {} +
+FILE_REGEX="${PROCESS_FILES:-'*.cmake|CMakeLists.txt'}"
+
+find . -regex $FILE_REGEX -exec cmake-format $* {} +
 
 exit $?
