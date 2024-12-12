@@ -35,7 +35,7 @@ For example
 
       # Regex to select which files to apply cmake-format on.
       # Defaults to '(.*\.cmake$|CMakeLists.txt$)'
-      file_regex: (.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
+      file_regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
 
 ```
 
