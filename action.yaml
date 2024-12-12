@@ -39,4 +39,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --file_regex='${{ inputs.file_regex }}' --cmake_format_args='${{ inputs.args }}'
+    - --file_regex=\'${{ inputs.file_regex }}\' --cmake_format_args=\'${{ inputs.args }}\'
