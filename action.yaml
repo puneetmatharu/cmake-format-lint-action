@@ -29,7 +29,7 @@ inputs:
     default: '--help'
 
     file_regex: |
-      Arguments to set which files to apply cmake-format on.
+      Regex to select which files to apply cmake-format on.
 
       Defaults to '(.*\.cmake$|CMakeLists.txt$)'
     required: false

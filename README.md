@@ -6,7 +6,8 @@ Formats CMake-specific files to the desired format using [`cmake-format`](https:
 
 ## Usage
 
-To use this action, pass arguments to the `args` element as you would to `cmake-format` - these arguments will be used to format each CMake file. For example
+To use this action, pass arguments to the `args` element as you would to `cmake-format` - these arguments will be used to format each CMake file. To select the files which should be processed use the `find_regex` argument.
+For example
 
 ```yaml
   - name: Format CMake files
@@ -31,6 +32,11 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
       #   -c CONFIG_FILES [CONFIG_FILES ...], --config-files CONFIG_FILES [CONFIG_FILES ...]
       #                         path to configuration file(s)
       args: --config-files .cmake-format.json --in-place
+
+      # Regex to select which files to apply cmake-format on.
+      # Defaults to '(.*\.cmake$|CMakeLists.txt$)'
+      file_regex: (.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
+
 ```
 
 You will probably want to pair this with a GitHub Action (such as
