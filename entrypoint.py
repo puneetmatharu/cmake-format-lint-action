@@ -6,10 +6,7 @@ import re
 import subprocess
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-                    prog='ProgramName',
-                    description='What the program does',
-                    epilog='Text at the bottom of help')
+    parser = argparse.ArgumentParser()
     parser.add_argument('--file_regex')
     parser.add_argument('--cmake_format_args')
     args = parser.parse_args()
