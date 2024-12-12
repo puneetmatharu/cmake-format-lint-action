@@ -14,8 +14,6 @@ LABEL com.github.actions.color="blue"
 RUN python -m pip install --no-cache-dir --upgrade pip && \
     python -m pip install --no-cache-dir "Cython<3" "cmakelang[YAML]==0.6.13"
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.py /entrypoint.py
 
-ARG PROCESS_FILES
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["python3", "/entrypoint.py"]
