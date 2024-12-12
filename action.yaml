@@ -27,8 +27,16 @@ inputs:
 
     required: true
     default: '--help'
+
+    file_regex: |
+      Arguments to set which files to apply cmake-format on.
+
+      Defaults to '(.*\.cmake$|CMakeLists.txt$)'
+    required: false
+    default: '(.*\.cmake$|CMakeLists.txt$)'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.args }}
+    - --file_regex='${{ inputs.file_regex }}' --cmake_format_args='${{ inputs.args }}'
