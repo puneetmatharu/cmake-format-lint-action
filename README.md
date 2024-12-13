@@ -6,8 +6,7 @@ Formats CMake-specific files to the desired format using [`cmake-format`](https:
 
 ## Usage
 
-To use this action, pass arguments to the `args` element as you would to `cmake-format` - these arguments will be used to format each CMake file. To select the files which should be processed use the `find_regex` argument.
-For example
+To use this action, pass arguments to the `args` element as you would to `cmake-format` - these arguments will be used to format each CMake file. For more fine-grained control over which files to process, use the `find_regex` argument; see below for an example.
 
 ```yaml
   - name: Format CMake files
