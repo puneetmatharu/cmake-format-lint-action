@@ -7,8 +7,8 @@ import subprocess
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--file_regex')
-    parser.add_argument('--cmake_format_args')
+    parser.add_argument('--file-regex')
+    parser.add_argument('--cmake-format-args')
     args = parser.parse_args()
 
     regex = re.compile(rf"{args.file_regex}")
