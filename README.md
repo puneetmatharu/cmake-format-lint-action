@@ -11,7 +11,7 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
 ```yaml
   - name: Format CMake files
     id: cmake-format
-    uses: PuneetMatharu/cmake-format-lint-action@v1.0.4
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.5
     with:
       # Arguments to be passed to cmake-format.
       #
@@ -31,6 +31,11 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
       #   -c CONFIG_FILES [CONFIG_FILES ...], --config-files CONFIG_FILES [CONFIG_FILES ...]
       #                         path to configuration file(s)
       args: --config-files .cmake-format.json --in-place
+
+      # Regex to select which files to apply cmake-format on.
+      #
+      # Defaults to '(.*\.cmake$|CMakeLists.txt$)'
+      file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
 ```
 
 You will probably want to pair this with a GitHub Action (such as
@@ -52,12 +57,13 @@ jobs:
 
     - name: Format CMake files
       id: cmake-format
-      uses: PuneetMatharu/cmake-format-lint-action@v1.0.4
+      uses: puneetmatharu/cmake-format-lint-action@v1.0.5
       with:
         args: --config-files .cmake-format.json --in-place
+        file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
 
     - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_user_name: cmake-format-bot
         commit_message: 'Automated commit of cmake-format changes.'

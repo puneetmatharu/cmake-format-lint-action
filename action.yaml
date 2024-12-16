@@ -1,9 +1,10 @@
-name: 'cmake-format lint action'
-author: 'Puneet Matharu'
-description: 'A Github Action to format CMake-specific files using cmake-format (v0.6.13)'
+name: "cmake-format lint action"
+author: "Puneet Matharu"
+description: "A GitHub Action to format CMake-specific files using cmake-format (v0.6.13)"
 branding:
-  icon: 'code'
-  color: 'blue'
+  icon: "code"
+  color: "blue"
+
 inputs:
   args:
     description: |
@@ -24,11 +25,29 @@ inputs:
                               Where to write the formatted file. Default is stdout.
         -c CONFIG_FILES [CONFIG_FILES ...], --config-files CONFIG_FILES [CONFIG_FILES ...]
                               path to configuration file(s)
-
     required: true
-    default: '--help'
+    default: "--help"
+
+  file-regex:
+    description: |
+      Regex to select which files to apply cmake-format on.
+
+      Defaults to '(.*\.cmake$|CMakeLists.txt$)'
+    required: false
+    default: '(.*\.cmake$|CMakeLists.txt$)'
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.args }}
+  using: "composite"
+  steps:
+    - name: Set up python3
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.9
+
+    - name: Install cmake-format
+      shell: bash
+      run: python3 -m pip install --no-cache-dir "Cython<3" "cmakelang[YAML]==0.6.13"
+
+    - name: Format CMake files
+      shell: bash
+      run: python3 ${{ github.action_path }}/entrypoint.py --cmake-format-args '${{ inputs.args }}' --file-regex '${{ inputs.file-regex }}'
