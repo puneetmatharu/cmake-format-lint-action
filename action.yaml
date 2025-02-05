@@ -50,4 +50,4 @@ runs:
 
     - name: Format CMake files
       shell: bash
-      run: python3 ${{ github.action_path }}/entrypoint.py --cmake-format-args '${{ inputs.args }}' --file-regex '${{ inputs.file-regex }}'
+      run: python3 ${{ github.action_path }}/entrypoint.py --cmake-format-args='${{ inputs.args }}' --file-regex='${{ inputs.file-regex }}'

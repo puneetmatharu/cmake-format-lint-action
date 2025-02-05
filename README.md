@@ -11,7 +11,7 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
 ```yaml
   - name: Format CMake files
     id: cmake-format
-    uses: puneetmatharu/cmake-format-lint-action@v1.0.5
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.6
     with:
       # Arguments to be passed to cmake-format.
       #
@@ -57,7 +57,7 @@ jobs:
 
     - name: Format CMake files
       id: cmake-format
-      uses: puneetmatharu/cmake-format-lint-action@v1.0.5
+      uses: puneetmatharu/cmake-format-lint-action@v1.0.6
       with:
         args: --config-files .cmake-format.json --in-place
         file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
