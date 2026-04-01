@@ -13,7 +13,7 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
 ```yaml
   - name: Check CMake formatting
     id: cmake-format
-    uses: puneetmatharu/cmake-format-lint-action@v1.0.7
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.8
     with:
       args: --config-files .cmake-format.json
 
@@ -28,7 +28,7 @@ If you want the action to rewrite files in-place, pass `--in-place`. For example
 ```yaml
   - name: Format CMake files
     id: cmake-format
-    uses: puneetmatharu/cmake-format-lint-action@v1.0.7
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.8
     with:
       # Arguments to be passed to cmake-format.
       #
@@ -74,7 +74,7 @@ jobs:
 
     - name: Format CMake files
       id: cmake-format
-      uses: puneetmatharu/cmake-format-lint-action@v1.0.7
+      uses: puneetmatharu/cmake-format-lint-action@v1.0.8
       with:
         args: --config-files .cmake-format.json --in-place
         file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
