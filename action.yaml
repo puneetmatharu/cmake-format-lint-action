@@ -10,6 +10,10 @@ inputs:
     description: |
       Arguments to supply to cmake-format.
 
+      By default, this action checks formatting and fails the job with a diff
+      when a file is not properly formatted. Pass --in-place to rewrite files
+      instead.
+
       Options:
         -h, --help            show this help message and exit
         -v, --version         show program's version number and exit
@@ -25,8 +29,8 @@ inputs:
                               Where to write the formatted file. Default is stdout.
         -c CONFIG_FILES [CONFIG_FILES ...], --config-files CONFIG_FILES [CONFIG_FILES ...]
                               path to configuration file(s)
-    required: true
-    default: "--help"
+    required: false
+    default: ""
 
   file-regex:
     description: |
@@ -40,9 +44,9 @@ runs:
   using: "composite"
   steps:
     - name: Set up python3
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
-        python-version: 3.9
+        python-version: 3.13
 
     - name: Install cmake-format
       shell: bash

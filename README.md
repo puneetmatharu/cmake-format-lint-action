@@ -1,17 +1,34 @@
 # cmake-format lint action
 
-Formats CMake-specific files to the desired format using [`cmake-format`](https://github.com/cheshirekow/cmake_format). To control the style of formatting, make sure to add a configuration file to the root of your project. For details on how to do this, see [Configuration](https://cmake-format.readthedocs.io/en/latest/configuration.html#configuration).
+Checks or formats CMake-specific files using [`cmake-format`](https://github.com/cheshirekow/cmake_format). To control the style of formatting, make sure to add a configuration file to the root of your project. For details on how to do this, see [Configuration](https://cmake-format.readthedocs.io/en/latest/configuration.html#configuration).
 
-**Note:** The current version of this action will format all `CMakeLists.txt` and `*.cmake` files in your project. If you require finer granularity, please request this feature (or any other features) by creating an Issue on the repository page.
+By default, the action checks formatting, fails the CI job if a file is not properly formatted, and prints a unified diff showing the required changes. Pass `--in-place` if you want the action to rewrite files instead.
+
+**Note:** The current version of this action will process all `CMakeLists.txt` and `*.cmake` files in your project. If you require finer granularity, please request this feature (or any other features) by creating an Issue on the repository page.
 
 ## Usage
 
-To use this action, pass arguments to the `args` element as you would to `cmake-format` - these arguments will be used to format each CMake file. For example
+To use this action, pass arguments to the `args` element as you would to `cmake-format`. Unless you pass a write option such as `--in-place`, the action will run in check mode and fail if formatting changes are needed. For example
+
+```yaml
+  - name: Check CMake formatting
+    id: cmake-format
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.7
+    with:
+      args: --config-files .cmake-format.json
+
+      # Regex to select which files to apply cmake-format on.
+      #
+      # Defaults to '(.*\.cmake$|CMakeLists.txt$)'
+      file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
+```
+
+If you want the action to rewrite files in-place, pass `--in-place`. For example:
 
 ```yaml
   - name: Format CMake files
     id: cmake-format
-    uses: puneetmatharu/cmake-format-lint-action@v1.0.6
+    uses: puneetmatharu/cmake-format-lint-action@v1.0.7
     with:
       # Arguments to be passed to cmake-format.
       #
@@ -38,7 +55,7 @@ To use this action, pass arguments to the `args` element as you would to `cmake-
       file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
 ```
 
-You will probably want to pair this with a GitHub Action (such as
+If you want formatting changes to be written back to the repository, you will probably want to pair this with a GitHub Action (such as
 [`stefanzweifel/git-auto-commit-action`](https://github.com/stefanzweifel/git-auto-commit-action))
 to commit any modified files. For example:
 
@@ -57,7 +74,7 @@ jobs:
 
     - name: Format CMake files
       id: cmake-format
-      uses: puneetmatharu/cmake-format-lint-action@v1.0.6
+      uses: puneetmatharu/cmake-format-lint-action@v1.0.7
       with:
         args: --config-files .cmake-format.json --in-place
         file-regex: '(.*\.cmake$|.*\.cmake\.in$|CMakeLists.txt$)'
